@@ -38,13 +38,13 @@ work never proceeds past a red gate.
 - [x] 3.7 Commit
 
 ## Phase 4 — Core layout engine
-- [ ] 4.1 `wrapText` (word boundaries, hard char-break fallback for over-long words, explicit `\n`)
-- [ ] 4.2 `truncateWithEllipsis`
-- [ ] 4.3 `Marquee`: px/tick, start pause, wrap gap — pure function of tick count
-- [ ] 4.4 `VerticalPager`: page splitting, auto-advance on tick, manual next-page
-- [ ] 4.5 Unit tests: boundary widths, over-long words, full marquee cycle, page math
-- [ ] 4.6 **Gate:** layout unit tests pass
-- [ ] 4.7 Commit
+- [x] 4.1 `wrapText` (word boundaries, hard char-break fallback for over-long words, explicit `\n`)
+- [x] 4.2 `truncateWithEllipsis`
+- [x] 4.3 `Marquee`: px/tick, start pause, wrap gap — pure function of tick count (+ `drawMarqueeText` with viewport clipping via new `drawTextClipped`)
+- [x] 4.4 `VerticalPager`: page splitting, auto-advance on tick, `nextBoundaryAfter` for manual next-page
+- [x] 4.5 Unit tests: boundary widths, over-long words, full marquee cycle, viewport clip, page math
+- [x] 4.6 **Gate:** layout unit tests pass (4/4 suites green)
+- [x] 4.7 Commit
 
 ## Phase 5 — Core protocol codec + fuzz suite
 - [ ] 5.1 Encoder (frame build + CRC) and typed payload builders

@@ -1,6 +1,7 @@
 add_library(phoenix_core STATIC
   src/framebuffer.cpp
   src/font.cpp
+  src/layout.cpp
   src/text_sanitize.cpp
   src/generated/font_data.cpp
 )

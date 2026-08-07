@@ -53,6 +53,13 @@ int drawChar(FrameBuffer& fb, const Font& font, int x, int y, char c,
 int drawText(FrameBuffer& fb, const Font& font, int x, int y,
              const std::string& s, bool on = true);
 
+// drawText with a horizontal clip window [clipX0, clipX1): pixels outside it
+// are not touched. Used by the marquee so scrolled text stays inside its
+// viewport instead of running over neighboring content.
+int drawTextClipped(FrameBuffer& fb, const Font& font, int x, int y,
+                    const std::string& s, int clipX0, int clipX1,
+                    bool on = true);
+
 TextMetrics measureText(const Font& font, const std::string& s);
 
 }  // namespace phoenix

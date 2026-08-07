@@ -27,6 +27,30 @@ int drawText(FrameBuffer& fb, const Font& font, int x, int y,
   return cx - x;
 }
 
+int drawTextClipped(FrameBuffer& fb, const Font& font, int x, int y,
+                    const std::string& s, int clipX0, int clipX1, bool on) {
+  int cx = x;
+  for (char c : s) {
+    if (cx >= clipX1 || cx >= kDisplayWidth) break;
+    const GlyphInfo& g = font.glyph(c);
+    if (cx + g.width > clipX0) {  // glyph at least partially visible
+      const int bytesPerRow = (g.width + 7) / 8;
+      const uint8_t* rows = font.bitmap + g.offset;
+      for (int row = 0; row < font.height; ++row) {
+        for (int col = 0; col < g.width; ++col) {
+          const int px = cx + col;
+          if (px < clipX0 || px >= clipX1) continue;
+          if (rows[row * bytesPerRow + col / 8] & (0x80u >> (col & 7))) {
+            fb.setPixel(px, y + row, on);
+          }
+        }
+      }
+    }
+    cx += g.width + font.tracking;
+  }
+  return cx - x;
+}
+
 TextMetrics measureText(const Font& font, const std::string& s) {
   int w = 0;
   for (char c : s) {

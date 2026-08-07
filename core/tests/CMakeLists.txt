@@ -9,4 +9,5 @@ endfunction()
 
 phoenix_test(test_framebuffer)
 phoenix_test(test_text)
+phoenix_test(test_layout)
 phoenix_test(test_golden)
