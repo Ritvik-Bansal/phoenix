@@ -20,13 +20,13 @@ work never proceeds past a red gate.
 - [x] 1.6 Commit
 
 ## Phase 2 — PROTOCOL.md (finalized before any dependent code)
-- [ ] 2.1 Generate real 128-bit UUIDs (service, TX, RX) with `uuidgen`; document the base-UUID scheme
-- [ ] 2.2 GATT model: TX (phone→glasses, write-without-response), RX (glasses→phone, notify), MTU/chunking rules (iOS decides MTU; framing survives arbitrary fragmentation)
-- [ ] 2.3 Frame format: start byte, type, seq, flags, u16 LE payload length, payload, CRC-16 (exact polynomial, init, coverage, byte order all documented)
-- [ ] 2.4 Message types: `ASSISTANT_TEXT`, `ASSISTANT_STREAM_CHUNK`, `NAV_UPDATE` (maneuver enum, distance, street), `CLEAR`, `SET_BRIGHTNESS`, `PING`, `ACK`, `BUTTON_EVENT`, `BATTERY_STATUS` — payload schema for each
-- [ ] 2.5 UTF-8 policy + documented fallback for unsupported codepoints (emoji must not crash the display)
-- [ ] 2.6 Decoder robustness rules: resync, length caps, CRC failure handling
-- [ ] 2.7 Commit
+- [x] 2.1 Generate real 128-bit UUIDs (service, TX, RX) with `uuidgen`; document the base-UUID scheme
+- [x] 2.2 GATT model: TX (phone→glasses, write-without-response), RX (glasses→phone, notify), MTU/chunking rules (iOS decides MTU; framing survives arbitrary fragmentation)
+- [x] 2.3 Frame format: start byte, type, seq, flags, u16 LE payload length, payload, CRC-16 (exact polynomial, init, coverage, byte order all documented, worked example computed and verified)
+- [x] 2.4 Message types: `ASSISTANT_TEXT`, `ASSISTANT_STREAM_CHUNK`, `NAV_UPDATE` (maneuver enum, distance, street), `CLEAR`, `SET_BRIGHTNESS`, `PING`, `ACK`, `BUTTON_EVENT`, `BATTERY_STATUS` — payload schema for each
+- [x] 2.5 UTF-8 policy + documented fallback for unsupported codepoints (emoji must not crash the display)
+- [x] 2.6 Decoder robustness rules: resync, length caps, CRC failure handling
+- [x] 2.7 Commit
 
 ## Phase 3 — Core framebuffer, fonts, font generator
 - [ ] 3.1 `FrameBuffer` 72x40, 1bpp, SSD1306 page order; `clear/setPixel/getPixel/fillRect/drawRect/drawLine/blit`, raw page accessor
