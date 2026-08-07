@@ -29,13 +29,13 @@ work never proceeds past a red gate.
 - [x] 2.7 Commit
 
 ## Phase 3 — Core framebuffer, fonts, font generator
-- [ ] 3.1 `FrameBuffer` 72x40, 1bpp, SSD1306 page order; `clear/setPixel/getPixel/fillRect/drawRect/drawLine/blit`, raw page accessor
-- [ ] 3.2 Font engine: per-glyph advance, `measureText` → `TextMetrics`, `drawText`
-- [ ] 3.3 `tools/gen_fonts.py` + readable ASCII-art font sources (no unexplained hex blobs): 5x7 proportional body font (full printable ASCII + fallback glyph), ~10x16 numeric clock font, 7x7 category icons, 16x16 nav arrows & splash art
-- [ ] 3.4 UTF-8 sanitizer: decode hostile UTF-8, transliterate common punctuation/Latin-1, map everything unsupported to the fallback glyph
-- [ ] 3.5 Hand-rolled zero-dependency test harness; golden-frame infrastructure (ASCII-art goldens committed as files, side-by-side diff print on failure)
-- [ ] 3.6 **Gate:** golden-frame tests pass (`ctest`)
-- [ ] 3.7 Commit
+- [x] 3.1 `FrameBuffer` 72x40, 1bpp, SSD1306 page order; `clear/setPixel/getPixel/fillRect/drawRect/drawLine/blit`, raw page accessor
+- [x] 3.2 Font engine: per-glyph advance, `measureText` → `TextMetrics`, `drawText`
+- [x] 3.3 `tools/gen_fonts.py` + readable ASCII-art font sources (no unexplained hex blobs): 5x7 proportional body font (full printable ASCII + fallback glyph), ~10x16 numeric clock font, 7x7 category icons, 16x16 nav arrows & splash art
+- [x] 3.4 UTF-8 sanitizer: decode hostile UTF-8, transliterate common punctuation/Latin-1, map everything unsupported to the fallback glyph
+- [x] 3.5 Hand-rolled zero-dependency test harness; golden-frame infrastructure (ASCII-art goldens committed as files, side-by-side diff print on failure, `PHOENIX_BLESS=1` authoring flow)
+- [x] 3.6 **Gate:** golden-frame tests pass (`ctest`, 3/3 suites green)
+- [x] 3.7 Commit
 
 ## Phase 4 — Core layout engine
 - [ ] 4.1 `wrapText` (word boundaries, hard char-break fallback for over-long words, explicit `\n`)

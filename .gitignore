@@ -24,3 +24,4 @@ ios/build/
 __pycache__/
 *.pyc
 .DS_Store
+*.actual.txt
