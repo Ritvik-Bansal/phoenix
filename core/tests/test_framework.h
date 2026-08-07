@@ -71,5 +71,14 @@ inline int runAll() {
 #define CHECK(cond) ::testfw::check((cond), #cond, __FILE__, __LINE__)
 #define CHECK_EQ(a, b) ::testfw::checkEq((a), (b), #a, #b, __FILE__, __LINE__)
 
+// Like CHECK, but bails out of the test on failure — for preconditions whose
+// failure would make the following code unsafe (e.g. indexing).
+#define REQUIRE(cond)                                    \
+  do {                                                   \
+    const bool req_ok_ = static_cast<bool>(cond);        \
+    ::testfw::check(req_ok_, #cond, __FILE__, __LINE__); \
+    if (!req_ok_) return;                                \
+  } while (0)
+
 #define TESTFW_MAIN \
   int main() { return ::testfw::runAll(); }

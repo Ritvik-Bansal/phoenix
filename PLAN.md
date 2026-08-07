@@ -56,14 +56,14 @@ work never proceeds past a red gate.
 - [x] 5.7 Commit
 
 ## Phase 6 — Core ANCS model, screens, screen manager
-- [ ] 6.1 ANCS domain model: category/event/flag enums (full documented set), `AncsNotification`, `AncsStore` handling added/modified/removed
-- [ ] 6.2 Category → icon/treatment mapping
-- [ ] 6.3 Screens: `SplashScreen`, `ClockScreen`, `NotificationScreen`, `IncomingCallScreen`, `AssistantScreen` (with `2/3` page indicator), `NavScreen`, `StatusScreen`
-- [ ] 6.4 `ScreenManager`: priority queue (call > nav > assistant > notification > idle clock), per-type timed dismissal, button dismissal, formal teardown-before-enter state machine with transition log
-- [ ] 6.5 `Device` facade: BLE bytes in → decoder → dispatch; ANCS events in; buttons; outbound frame queue (button events, battery, ACKs); tick-driven deterministic clock
-- [ ] 6.6 Tests: priority preemption & resume, transition ordering, ANCS add/modify/remove (dismissed on phone → cleared on display), screen golden frames
-- [ ] 6.7 **Gate:** priority, transition, and ANCS event tests pass
-- [ ] 6.8 Commit
+- [x] 6.1 ANCS domain model: category/event/flag enums (full documented set), `AncsNotification`, `AncsStore` handling added/modified/removed
+- [x] 6.2 Category → icon/treatment mapping (pre-existing backlog stays quiet; modified-merge keeps unchanged fields)
+- [x] 6.3 Screens: `SplashScreen`, `ClockScreen`, `NotificationScreen`, `IncomingCallScreen`, `AssistantScreen` (with `2/3` page indicator), `NavScreen`, `StatusScreen` (+ deterministic clock via `DateTime`, LiPo battery curve)
+- [x] 6.4 `ScreenManager`: priority queue (call > nav > assistant > notification > idle clock), per-type timed dismissal, button dismissal, formal teardown-before-enter state machine with transition log
+- [x] 6.5 `Device` facade: BLE bytes in → decoder → dispatch; ANCS events in; buttons; outbound frame queue (button events, battery, ACKs); tick-driven deterministic clock; firmware and sim both wrap exactly this object
+- [x] 6.6 Tests: priority preemption & resume, transition ordering, ANCS add/modify/remove (dismissed on phone → cleared on display), 9 reviewed screen golden frames, 42 device/screen/ancs cases
+- [x] 6.7 **Gate:** priority, transition, and ANCS event tests pass (8/8 suites, plain + ASan)
+- [x] 6.8 Commit
 
 ## Phase 7 — Simulator (primary deliverable)
 - [ ] 7.1 Scenario DSL (plain text, zero-dep parser) + `ScenarioRunner` driving the same `Device` facade the firmware uses

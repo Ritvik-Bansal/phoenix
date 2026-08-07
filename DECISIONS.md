@@ -10,3 +10,10 @@ One line per judgement call: `[AREA] Chose X over Y because Z`.
 - [CODEC] Chose resync-by-one-byte after a bad frame (drop only the start byte, rescan) over skipping the whole claimed frame because a real frame may begin inside garbage that faked a header; the corruption sweep test proves subsequent frames always recover.
 - [CODEC] Chose a 4096-byte decoder buffer cap with oldest-byte drop over unbounded buffering because this parses radio input on a microcontroller; the cap is ~8x the largest legal frame.
 - [TESTS] Chose separate `build-asan/` sanitizer runs over enabling ASan in the default build because the user-facing build should stay vanilla; the fuzz suite runs green under ASan+UBSan.
+- [ANCS] Chose to suppress screens for `PreExisting`-flagged notifications (stored but not popped) over showing everything because iOS replays the entire notification backlog on every reconnect and flooding the HUD with stale items would make reconnects unusable.
+- [ANCS] Chose to show silent-flagged notifications normally over suppressing them because a glanceable HUD is the point of the device; silent only means the phone didn't chime.
+- [SCREENS] Chose restart-timers-on-resume for preempted screens over accumulating shown-time because after a call interrupts a notification the wearer needs the full display window again, and it keeps the state machine memoryless.
+- [SCREENS] Chose B-on-last-page = dismiss for notifications (and wrap-to-start for assistant replies) because notification triage is linear while assistant replies get re-read.
+- [SCREENS] Chose idle screen = Clock when connected / Status when not, with button C summoning Status as a timed overlay, so StatusScreen has one implementation for both roles.
+- [DEVICE] Chose to drop all phone-fed content (ANCS store, nav, assistant) on disconnect because it is stale the moment the link dies and iOS replays pre-existing notifications on reconnect anyway.
+- [DEVICE] Chose battery reports on connect + every 60 s + on ≥5% change over a fixed period only, to keep BLE traffic minimal while the phone still tracks the pack closely.

@@ -1,8 +1,14 @@
 add_library(phoenix_core STATIC
-  src/framebuffer.cpp
+  src/ancs.cpp
+  src/battery.cpp
+  src/datetime.cpp
+  src/device.cpp
   src/font.cpp
+  src/framebuffer.cpp
   src/layout.cpp
   src/protocol.cpp
+  src/screen_manager.cpp
+  src/screens.cpp
   src/text_sanitize.cpp
   src/generated/font_data.cpp
 )
