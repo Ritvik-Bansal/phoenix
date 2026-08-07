@@ -47,13 +47,13 @@ work never proceeds past a red gate.
 - [x] 4.7 Commit
 
 ## Phase 5 — Core protocol codec + fuzz suite
-- [ ] 5.1 Encoder (frame build + CRC) and typed payload builders
-- [ ] 5.2 `StreamDecoder`: byte-stream state machine, resync on garbage/bad CRC/oversize length, bounded buffering
-- [ ] 5.3 Typed payload parsers (bounds-checked, `optional` results)
-- [ ] 5.4 Fuzz suite (deterministic PRNG): truncated frames, bad lengths, wrong CRC, garbage interleave, frames split at arbitrary chunk boundaries; round-trip and split-invariance properties
-- [ ] 5.5 ASan/UBSan verification run in a separate build dir (no OOB reads)
-- [ ] 5.6 **Gate:** all codec/fuzz tests pass, sanitizers clean
-- [ ] 5.7 Commit
+- [x] 5.1 Encoder (frame build + CRC) and typed payload builders
+- [x] 5.2 `StreamDecoder`: byte-stream state machine, resync on garbage/bad CRC/oversize length, bounded buffering
+- [x] 5.3 Typed payload parsers (bounds-checked, `optional` results)
+- [x] 5.4 Fuzz suite (deterministic PRNG): truncated frames (every prefix), bad lengths, per-byte corruption sweep, garbage interleave, arbitrary fragmentation invariance, mutated streams, decoder-wedge probe
+- [x] 5.5 ASan/UBSan verification run in `build-asan/` (no OOB reads)
+- [x] 5.6 **Gate:** all codec/fuzz tests pass, sanitizers clean (5/5 suites in both builds)
+- [x] 5.7 Commit
 
 ## Phase 6 — Core ANCS model, screens, screen manager
 - [ ] 6.1 ANCS domain model: category/event/flag enums (full documented set), `AncsNotification`, `AncsStore` handling added/modified/removed
