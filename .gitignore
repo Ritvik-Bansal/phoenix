@@ -1,0 +1,26 @@
+# Build trees
+build/
+build-*/
+cmake-build-*/
+
+# Simulator output (generated)
+sim/out/
+
+# Firmware: core library copy is synced by build.sh from core/ — never edit or commit
+firmware/lib/PhoenixCore/
+firmware/build/
+firmware/phoenix_fw/build/
+
+# iOS secrets — never commit an API key
+ios/Secrets.xcconfig
+
+# Xcode noise
+xcuserdata/
+*.xcuserstate
+DerivedData/
+ios/build/
+
+# Tooling noise
+__pycache__/
+*.pyc
+.DS_Store
