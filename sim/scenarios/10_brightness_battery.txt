@@ -1,0 +1,25 @@
+name 10 · Brightness, battery & status
+desc SET_BRIGHTNESS dims the panel (rendered as glow), the battery walks down the LiPo discharge curve, and button C summons the status overlay.
+
+tick 20
+connect
+bond
+time 2026-08-07 22:40:05
+battery 4180
+tick 25
+brightness 90
+tick 15
+brightness 25
+tick 15
+brightness 255
+tick 10
+battery 3870
+tick 15
+battery 3640
+tick 15
+button c                    # status overlay
+tick 40
+battery 3450
+tick 20
+button c
+tick 55

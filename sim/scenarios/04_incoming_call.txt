@@ -1,0 +1,21 @@
+name 04 · Incoming call
+desc ANCS rings with accept/decline affordances. Button B answers the first call; the second is declined and comes back as a missed-call notification.
+
+tick 20
+connect
+bond
+time 2026-08-07 12:30:00
+tick 5
+ancs-add uid=40 cat=call app=com.apple.mobilephone title="Mom" flags=positive,negative
+tick 25
+button b                    # accept -> ANCS positive action
+tick 8
+ancs-remove uid=40          # phone confirms, ringer screen clears
+tick 20
+ancs-add uid=41 cat=call app=com.apple.mobilephone title="Unknown +1 415 555 0199" flags=positive,negative
+tick 30
+button a                    # decline -> ANCS negative action
+tick 6
+ancs-remove uid=41
+ancs-add uid=42 cat=missed-call app=com.apple.mobilephone title="Unknown +1 415 555 0199" msg="Missed call"
+tick 90

@@ -66,13 +66,13 @@ work never proceeds past a red gate.
 - [x] 6.8 Commit
 
 ## Phase 7 — Simulator (primary deliverable)
-- [ ] 7.1 Scenario DSL (plain text, zero-dep parser) + `ScenarioRunner` driving the same `Device` facade the firmware uses
-- [ ] 7.2 Scenarios: boot/idle clock · short notification · over-long notification (marquee) · incoming call with actions · notification removed while on screen · multi-page assistant reply · navigation sequence · rapid-burst priority test · disconnect/rebond cycle · brightness & battery
-- [ ] 7.3 HTML writer: one self-contained `sim/out/index.html`, frames as inline SVG (run-length paths), 8x scale, dark bezel + phosphor glow, per-frame tick & event labels
-- [ ] 7.4 Playback: vanilla inline JS per scenario — play/pause/step/seek at real-time tick rate (100 ms/tick), brightness reflected in rendering
-- [ ] 7.5 Visual check of the output in a browser
-- [ ] 7.6 **Gate:** `./build/sim/phoenix_sim --all` writes `sim/out/index.html` with rendered frames for every scenario
-- [ ] 7.7 Commit
+- [x] 7.1 Scenario DSL (plain text, zero-dep parser) + `ScenarioRunner` driving the same `Device` facade the firmware uses (TX frames fed to the decoder in 20-byte radio-sized chunks)
+- [x] 7.2 Scenarios (10): boot/idle clock · short notification · over-long notification (marquee) · incoming call with actions · notification removed while on screen · multi-page assistant reply · navigation sequence · rapid-burst priority test · disconnect/rebond cycle · brightness & battery
+- [x] 7.3 HTML writer: one self-contained `sim/out/index.html` (~1.4 MB, zero external assets), frames as inline run-length SVG paths, 8x scale, dark bezel + phosphor glow, per-frame tick & event labels
+- [x] 7.4 Playback: vanilla inline JS per scenario — play/pause/step/seek/speed at real-time tick rate (100 ms/tick), brightness as panel glow, sticky event labels, offscreen players idle
+- [x] 7.5 Visual check in a live browser: splash/clock/call/nav/status all verified on screen
+- [x] 7.6 **Gate:** `./build/sim/phoenix_sim --all` writes `sim/out/index.html` — 629 captured frames across all 10 scenarios
+- [x] 7.7 Commit
 
 ## Phase 8 — Firmware (XIAO nRF52840, arduino-cli)
 - [ ] 8.1 `firmware/build.sh`: installs Seeed board index + core + U8g2, syncs `core/` into `firmware/lib/PhoenixCore` (single source of truth), compiles `Seeeduino:nrf52:xiaonRF52840`

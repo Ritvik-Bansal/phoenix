@@ -1,0 +1,12 @@
+name 03 · Over-long notification
+desc A long email subject marquees across the title line while the body auto-pages (dots on the right edge); button B on the last page dismisses.
+
+tick 20
+connect
+bond
+time 2026-08-07 11:03:40
+tick 5
+ancs-add uid=31 cat=email app=com.google.Gmail appname=Gmail title="Quarterly hardware budget review meeting rescheduled" msg="Finance moved the review to Thursday 3pm. Please bring the updated BOM for the optics assembly and the battery life projections."
+tick 130
+button b                    # already on the last page: dismiss
+tick 20

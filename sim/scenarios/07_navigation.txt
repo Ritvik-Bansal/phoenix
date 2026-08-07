@@ -1,0 +1,22 @@
+name 07 · Turn-by-turn navigation
+desc NAV_UPDATE frames drive the arrow, the big-digit distance, and the street marquee. Updates land in place (no screen churn); ARRIVE lingers, then clears.
+
+tick 20
+connect
+bond
+time 2026-08-07 17:45:00
+tick 5
+nav straight 1200 "Continue on Folsom St"
+tick 25
+nav slight-right 400 "Folsom St toward 2nd"
+tick 25
+nav right 180 "2nd Street"
+tick 20
+nav right 60 "2nd Street"
+tick 15
+nav left 250 "Market St"
+tick 20
+nav uturn 90 "Market St"
+tick 20
+nav arrive 0 "Ferry Building"
+tick 110

@@ -1,0 +1,20 @@
+name 06 · Assistant reply, streamed
+desc The phone pings, then streams an LLM answer chunk by chunk — text appears while the model is still talking, an emoji degrades to the fallback box, and the finished reply pages with a page indicator.
+
+tick 20
+connect
+bond
+time 2026-08-07 16:05:12
+tick 5
+ping 1
+tick 3
+assistant-chunk "Today in San Francisco: sunny, "
+tick 6
+assistant-chunk "high of 22°C with light wind. "
+tick 6
+assistant-chunk "Expect fog after sunset 🌁. "
+tick 5
+assistant-chunk-final "Tomorrow: 20°C and clear all day."
+tick 40
+button b                    # skip ahead a page
+tick 85

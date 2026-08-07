@@ -1,0 +1,10 @@
+name 01 · Boot & idle clock
+desc Power-on splash, the phone connects and bonds, CTS sets the time, and the HUD settles into its idle clock (watch the colon blink and the minute roll over).
+
+tick 8                      # splash flame flickers
+connect
+bond
+time 2026-08-07 09:41:55
+tick 30
+battery 3980
+tick 70                     # crosses 09:42

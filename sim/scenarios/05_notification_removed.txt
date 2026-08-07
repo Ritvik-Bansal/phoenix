@@ -1,0 +1,12 @@
+name 05 · Dismissed on the phone
+desc A calendar alert is mid-display when the wearer clears it on the iPhone — the ANCS removed event wipes it from the glass instantly.
+
+tick 20
+connect
+bond
+time 2026-08-07 14:20:30
+tick 5
+ancs-add uid=55 cat=schedule app=com.apple.mobilecal appname=Calendar title="Standup" msg="Starts in 5 minutes, room 4B"
+tick 30
+ancs-remove uid=55
+tick 25

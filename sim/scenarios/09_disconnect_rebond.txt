@@ -1,0 +1,21 @@
+name 09 · Disconnect & re-bond
+desc The link drops mid-notification: stale phone content clears and the HUD falls back to an advertising status screen. The phone returns, re-bonds, resyncs time, and replays its backlog quietly — pre-existing notifications never pop.
+
+tick 20
+connect
+bond
+time 2026-08-07 20:15:45
+tick 20
+ancs-add uid=90 cat=social app=org.whispersystems.signal appname=Signal title="Kai" msg="on my way"
+tick 30
+disconnect
+tick 40                     # advertising dots animate
+connect
+tick 6
+bond
+time 2026-08-07 20:16:58
+tick 10
+ancs-add uid=90 cat=social app=org.whispersystems.signal appname=Signal title="Kai" msg="on my way" flags=preexisting
+tick 10
+ancs-add uid=91 cat=social app=org.whispersystems.signal appname=Signal title="Kai" msg="here!"
+tick 90

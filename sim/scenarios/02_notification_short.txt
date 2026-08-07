@@ -1,0 +1,10 @@
+name 02 · Short notification
+desc A WhatsApp message pops over the clock, lingers its 8 seconds, and auto-dismisses back to idle.
+
+tick 20
+connect
+bond
+time 2026-08-07 09:41:10
+tick 20
+ancs-add uid=12 cat=social app=net.whatsapp.WhatsApp appname=WhatsApp title="Ravi" msg="Lunch at 12?"
+tick 95

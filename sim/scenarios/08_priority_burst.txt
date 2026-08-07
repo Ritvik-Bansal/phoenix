@@ -1,0 +1,27 @@
+name 08 · Priority burst
+desc Everything at once. A streaming assistant reply is preempted by navigation, a call tops both; as each layer clears the next resumes, and queued notifications drain FIFO at the end.
+
+tick 20
+connect
+bond
+time 2026-08-07 18:30:00
+tick 5
+assistant-chunk "Reading your route summary: "
+tick 5
+ancs-add uid=80 cat=social app=net.whatsapp.WhatsApp appname=WhatsApp title="Ana" msg="running late, start without me"
+tick 5
+nav left 300 "Howard St"
+tick 10
+ancs-add uid=81 cat=email app=com.google.Gmail appname=Gmail title="Build green" msg="firmware CI passed on main"
+tick 5
+ancs-add uid=82 cat=call app=com.apple.mobilephone title="Mom" flags=positive,negative
+tick 15
+assistant-chunk-final "left on Howard, arrive 6:45pm."
+tick 10
+ancs-remove uid=82          # call ends -> nav resumes
+tick 15
+clear nav                   # phone clears nav -> assistant resumes
+tick 60
+button a                    # dismiss assistant -> WhatsApp surfaces
+tick 85                     # auto-dismiss -> Gmail follows (FIFO)
+tick 90
