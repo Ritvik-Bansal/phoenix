@@ -75,16 +75,16 @@ work never proceeds past a red gate.
 - [x] 7.7 Commit
 
 ## Phase 8 — Firmware (XIAO nRF52840, arduino-cli)
-- [ ] 8.1 `firmware/build.sh`: installs Seeed board index + core + U8g2, syncs `core/` into `firmware/lib/PhoenixCore` (single source of truth), compiles `Seeeduino:nrf52:xiaonRF52840`
-- [ ] 8.2 Display driver: U8g2 dedicated 72x40 SSD1306 constructor, core framebuffer pushed directly
-- [ ] 8.3 BLE dual role on one connection: peripheral advertising Phoenix service + GATT client for ANCS (`BLEAncs`) and CTS (`BLEClientCts`); bonding implemented and persisted
-- [ ] 8.4 ANCS callbacks → core model; custom-service bytes → core decoder; CTS → core clock; core outbox → RX notifications
-- [ ] 8.5 ANCS notification actions wired to buttons (accept/decline call)
-- [ ] 8.6 Three debounced buttons: dismiss, next-page, long-press sleep
-- [ ] 8.7 Power management: display-off idle, SYSTEM OFF deep sleep with GPIO wake, reasoning documented in comments
-- [ ] 8.8 Battery ADC → millivolts → LiPo discharge-curve percentage (curve lives in core, tested on desktop)
-- [ ] 8.9 **Gate:** `./firmware/build.sh` compiles clean
-- [ ] 8.10 Commit
+- [x] 8.1 `firmware/build.sh`: installs Seeed board index + core + U8g2, syncs `core/` into `firmware/lib/PhoenixCore` (single source of truth, umbrella header for arduino-cli detection), compiles `Seeeduino:nrf52:xiaonRF52840` with `-std=gnu++17`
+- [x] 8.2 Display driver: U8g2 dedicated 72x40 SSD1306 constructor (`U8G2_SSD1306_72X40_ER_F_HW_I2C`), core framebuffer memcpy'd straight into U8g2's page buffer (geometry-checked, pixel-loop fallback)
+- [x] 8.3 BLE dual role on one connection: peripheral advertising Phoenix service (+ ANCS solicitation) + GATT client `BLEAncs`/`BLEClientCts`; pairing requested on connect, bonds persist in InternalFS
+- [x] 8.4 ANCS callbacks (attrs + app display name fetched) → core model; TX writes → core decoder; CTS reads/adjust → core clock; core outbox → MTU-chunked RX notifications
+- [x] 8.5 ANCS notification actions wired to buttons (B accepts, A declines via `performAction`)
+- [x] 8.6 Three debounced buttons: dismiss, next-page, aux/long-press sleep (30 ms debounce, 700 ms long)
+- [x] 8.7 Power management: display-off idle → SYSTEM ON idle → SYSTEM OFF with GPIO-sense wake; full power budget reasoning in power.cpp comments
+- [x] 8.8 Battery ADC (XIAO divider, averaged, 2.4 V internal ref) → millivolts → core LiPo curve
+- [x] 8.9 **Gate:** `./firmware/build.sh` compiles clean (168 KB flash / 20%, 16.5 KB RAM / 6%)
+- [x] 8.10 Commit
 
 ## Phase 9 — iOS companion app
 - [ ] 9.1 Xcode project (committed, shared scheme `Phoenix`), SwiftUI, recent iOS target
