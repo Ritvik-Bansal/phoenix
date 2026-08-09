@@ -87,20 +87,35 @@ work never proceeds past a red gate.
 - [x] 8.10 Commit
 
 ## Phase 9 — iOS companion app
-- [ ] 9.1 Xcode project (committed, shared scheme `Phoenix`), SwiftUI, recent iOS target
-- [ ] 9.2 `PhoenixTransport` protocol; `BleTransport` (CoreBluetooth central: scan by service UUID, connect, MTU, subscribe RX, chunked TX writes, state restoration, `bluetooth-central` background mode) and `FakeTransport` (full virtual glasses; entire app usable in the Simulator)
-- [ ] 9.3 Reconnection with exponential backoff + jitter (isolated, testable)
-- [ ] 9.4 Swift protocol codec (mirror of core wire format, fixture-validated against C++ output)
-- [ ] 9.5 Speech-to-text: `SFSpeechRecognizer`, on-device preference, `AVAudioSession` Bluetooth-headset routing, in-app push-to-talk button (+ text input fallback)
-- [ ] 9.6 Streaming LLM client (OpenAI-compatible SSE); key from gitignored xcconfig; offline echo mode when unconfigured
-- [ ] 9.7 Virtual glasses view: 72x40 rendered in SwiftUI from generated font data (same generator output as core)
-- [ ] 9.8 Debug view: raw frames both directions, hex + decoded
-- [ ] 9.9 XCTest: codec, backoff, transport abstraction
-- [ ] 9.10 **Gate:** `xcodebuild -scheme Phoenix -destination 'platform=iOS Simulator,name=iPhone 15' build test` succeeds
-- [ ] 9.11 Commit
+- [x] 9.1 Xcode project (xcodegen spec + committed `.xcodeproj`, shared scheme `Phoenix`), SwiftUI, iOS 17 target
+- [x] 9.2 `PhoenixTransport` protocol; `BleTransport` (CoreBluetooth central: scan by service UUID, connect, MTU-sized chunked TX writes, subscribe RX, state preservation/restoration with `willRestoreState`, `bluetooth-central` background mode) and `FakeTransport` (full virtual glasses; entire app usable in the Simulator)
+- [x] 9.3 Reconnection with exponential backoff + full jitter (pure, injectable RNG, unit-tested)
+- [x] 9.4 Swift protocol codec + stream decoder, validated byte-for-byte against C++-core-generated fixtures; hostile-input tests mirror the C++ fuzz suite
+- [x] 9.5 Speech-to-text: `SFSpeechRecognizer`, on-device preference, `AVAudioSession` Bluetooth-headset routing, in-app push-to-talk button + text input fallback
+- [x] 9.6 Streaming LLM client (OpenAI-compatible SSE); key from Keychain or gitignored xcconfig; offline echo mode when unconfigured
+- [x] 9.7 Virtual glasses view: 72x40 SwiftUI Canvas driven by the same generated font/sprite bytes as the firmware
+- [x] 9.8 Debug view: raw frames both directions, hex + decoded
+- [x] 9.9 XCTest: codec + fuzz, backoff, transport abstraction, renderer/wrap parity, app-model pipeline (39 cases)
+- [x] 9.10 **Gate:** `xcodebuild -scheme Phoenix -destination 'platform=iOS Simulator,name=iPhone 15' build test` succeeds (39/39); app also launched and screenshotted running on the Simulator
+- [x] 9.11 Commit
 
 ## Phase 10 — Documentation & final verification
-- [ ] 10.1 `README.md`: exact copy-paste commands first, architecture overview, layout, known iOS limitations (Simulator BLE, force-quit background kill, 7-day free provisioning, accessory-side MTU/interval limits)
-- [ ] 10.2 `DECISIONS.md` complete; `PLAN.md` fully checked off
-- [ ] 10.3 Full clean-room run of the entire Definition of Done command list
-- [ ] 10.4 Final commit
+- [x] 10.1 `README.md`: exact copy-paste commands first, architecture overview, layout, testing notes, font/scenario workflow, known limitations (Simulator BLE, force-quit background kill, 7-day free provisioning, accessory-side MTU/interval limits, firmware verified by compilation only, ASCII-only glyph set)
+- [x] 10.2 `DECISIONS.md` complete (30 entries); `PLAN.md` fully checked off
+- [x] 10.3 Full clean-room run of the entire Definition of Done command list — build trees, sim output, and Xcode DerivedData deleted first:
+      · `cmake -B build && cmake --build build && ctest` → 8/8 suites pass
+      · `./build/sim/phoenix_sim --all` → 10 scenarios, 629 frames, 1.4 MB `sim/out/index.html`
+      · `./firmware/build.sh` → clean compile, 20% flash / 6% RAM
+      · `xcodebuild … name=iPhone 15 build test` → BUILD + TEST SUCCEEDED, 39/39
+- [x] 10.4 Final commit
+
+---
+
+## Result
+
+| Component | Verification | Status |
+|---|---|---|
+| `core/` | 8 ctest suites (~100 cases) incl. 12 golden frames, protocol fuzz; clean under ASan/UBSan | green |
+| `sim/` | 10 scenarios → self-contained HTML player, reviewed in a live browser | green |
+| `firmware/` | `arduino-cli` compile for `Seeeduino:nrf52:xiaonRF52840` (no hardware to flash) | green |
+| `ios/` | `xcodebuild` Simulator build + 39 XCTest cases; app launched and screenshotted | green |
