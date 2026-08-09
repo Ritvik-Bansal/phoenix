@@ -1,0 +1,104 @@
+import Foundation
+
+/// Streaming client for an OpenAI-compatible chat endpoint. Streaming matters
+/// here: chunks go to the glasses as ASSISTANT_STREAM_CHUNK frames, so text
+/// starts appearing on the display before the model finishes.
+///
+/// With no API key configured the client runs in offline echo mode — the app
+/// stays fully usable (and demoable) without network or secrets.
+protocol LLMClienting {
+    /// Streams reply fragments in order. Throws on transport failure.
+    func stream(prompt: String, onChunk: @escaping (String) -> Void) async throws
+    var isOffline: Bool { get }
+}
+
+final class LLMClient: LLMClienting {
+    private let session: URLSession
+    private let apiKey: String?
+    private let endpoint: URL
+    private let model: String
+
+    init(session: URLSession = .shared,
+         apiKey: String? = PhoenixConfig.apiKey,
+         endpoint: URL = PhoenixConfig.endpoint,
+         model: String = PhoenixConfig.model) {
+        self.session = session
+        self.apiKey = apiKey
+        self.endpoint = endpoint
+        self.model = model
+    }
+
+    var isOffline: Bool { apiKey == nil }
+
+    func stream(prompt: String, onChunk: @escaping (String) -> Void) async throws {
+        guard let apiKey else {
+            await echo(prompt: prompt, onChunk: onChunk)
+            return
+        }
+
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 30
+
+        let body: [String: Any] = [
+            "model": model,
+            "stream": true,
+            "messages": [
+                // The display is 12 characters by 4 lines: brevity is a
+                // hardware constraint, not a style preference.
+                ["role": "system",
+                 "content": "You answer for a tiny heads-up display. Reply in at most 2 short sentences, plain ASCII, no markdown, no emoji."],
+                ["role": "user", "content": prompt],
+            ],
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        let (bytes, response) = try await session.bytes(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw LLMError.badResponse("no HTTP response")
+        }
+        guard (200..<300).contains(http.statusCode) else {
+            throw LLMError.badResponse("HTTP \(http.statusCode)")
+        }
+
+        // Server-sent events: `data: {json}` lines, terminated by `data: [DONE]`.
+        for try await line in bytes.lines {
+            guard line.hasPrefix("data:") else { continue }
+            let payload = line.dropFirst(5).trimmingCharacters(in: .whitespaces)
+            if payload == "[DONE]" { break }
+            guard let data = payload.data(using: .utf8),
+                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let choices = json["choices"] as? [[String: Any]],
+                  let delta = choices.first?["delta"] as? [String: Any],
+                  let content = delta["content"] as? String,
+                  !content.isEmpty
+            else { continue }
+            onChunk(content)
+        }
+    }
+
+    /// Offline echo mode: emits a short canned reply in chunks so the whole
+    /// streaming path (and the glasses render) still exercises end to end.
+    private func echo(prompt: String, onChunk: @escaping (String) -> Void) async {
+        let trimmed = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+        let reply = trimmed.isEmpty
+            ? "Offline mode: no API key configured."
+            : "Offline echo: \(trimmed)"
+        for word in reply.split(separator: " ", omittingEmptySubsequences: false) {
+            onChunk(word + " ")
+            try? await Task.sleep(nanoseconds: 90_000_000)
+        }
+    }
+}
+
+enum LLMError: LocalizedError {
+    case badResponse(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .badResponse(let detail): return "LLM request failed: \(detail)"
+        }
+    }
+}

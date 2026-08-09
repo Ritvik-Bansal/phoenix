@@ -1,0 +1,531 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08184EFED6195459F28571D8 /* BleTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BD2A90AFBC1DB7A4469DA7 /* BleTransport.swift */; };
+		08D72BA1BEB04328CF564C2E /* PhoenixMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27CCC744FEC7C105F916FDC /* PhoenixMessages.swift */; };
+		1B3302D35B7160693DBF112D /* GlassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6F8398DCF1035FC158FB9 /* GlassesView.swift */; };
+		2AB16AB132253C7F07324B6B /* FontData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2022A9986805291C78003 /* FontData.swift */; };
+		2BC7C1BB9E2E6C788D4C54F4 /* GlassesSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B53B6BBFE844805BD9AF6B /* GlassesSimulation.swift */; };
+		301B92BFAFD59ABF992D38C3 /* PhoenixConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E28F71BC23B286ACD8D766D /* PhoenixConfig.swift */; };
+		30782663AD81318FC79DF5DD /* LLMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8524C8D46D9C1DF9194585E /* LLMClient.swift */; };
+		33F221E19801595996D6C790 /* PhoenixProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647BC841ED0E2FA6B92DE2F /* PhoenixProtocol.swift */; };
+		3843B3321FFAF5469041A292 /* PhoenixStreamDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504F4D3EFD256CDE6F0EC243 /* PhoenixStreamDecoder.swift */; };
+		51D36FD7FEDCC36D12CC3954 /* PhoenixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33663ACC8B954F2C74E20BAD /* PhoenixApp.swift */; };
+		5E40E91C73D8694A1D2F67D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAA0578CD0F68876E109A9 /* ContentView.swift */; };
+		64D4CB822251283558DEFBF1 /* PhoenixRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175A544F07F390D4C2BC511 /* PhoenixRenderer.swift */; };
+		69BB2A4AB30AD1C8440161A8 /* TransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992C1C4EE13A7DD5E51D3BFE /* TransportTests.swift */; };
+		738C86E88830F21FE3B7C1FA /* ReconnectionBackoffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */; };
+		A5F5315E198A3C999840CD85 /* PhoenixProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */; };
+		A62356FE9F5660348AFF174E /* FakeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71685CED7151921866A7044D /* FakeTransport.swift */; };
+		AE92D21307E96839A05C2C77 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F8A5CD95C97E618A83CD /* SpeechRecognizer.swift */; };
+		C111A8236F13CF65FB4A7A91 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678C15731FD267509931FDD8 /* DebugView.swift */; };
+		C58A9C659A633BA9CA9ABB22 /* PhoenixTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383D0A93D3ED14F2C55C7D28 /* PhoenixTransport.swift */; };
+		D07D5F3578F2A4DD90F5BC4E /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CA191C2AB8114BCA7F08AA /* AppModel.swift */; };
+		D46F24AC3516942C11530884 /* ReconnectionBackoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44A1C8CEBC7C35F81B7461F /* ReconnectionBackoff.swift */; };
+		D4E5B4A3F6016EB1C63F34A7 /* RendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFE1BDFAAB4934A70D3BFEF /* RendererTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53566E8A10DF14668F35D6FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49AA2B73F89EDFBD6A04D31B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3DC7D8CDDC4289B945C6D08;
+			remoteInfo = Phoenix;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03D2022A9986805291C78003 /* FontData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontData.swift; sourceTree = "<group>"; };
+		0647BC841ED0E2FA6B92DE2F /* PhoenixProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixProtocol.swift; sourceTree = "<group>"; };
+		19BD2A90AFBC1DB7A4469DA7 /* BleTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleTransport.swift; sourceTree = "<group>"; };
+		26F6F8A5CD95C97E618A83CD /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		33663ACC8B954F2C74E20BAD /* PhoenixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixApp.swift; sourceTree = "<group>"; };
+		383D0A93D3ED14F2C55C7D28 /* PhoenixTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixTransport.swift; sourceTree = "<group>"; };
+		3845575D7413F12EF90B2F16 /* PhoenixTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PhoenixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		504F4D3EFD256CDE6F0EC243 /* PhoenixStreamDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixStreamDecoder.swift; sourceTree = "<group>"; };
+		61B53B6BBFE844805BD9AF6B /* GlassesSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassesSimulation.swift; sourceTree = "<group>"; };
+		678C15731FD267509931FDD8 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		71685CED7151921866A7044D /* FakeTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTransport.swift; sourceTree = "<group>"; };
+		74C6F8398DCF1035FC158FB9 /* GlassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassesView.swift; sourceTree = "<group>"; };
+		78CA191C2AB8114BCA7F08AA /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		8E28F71BC23B286ACD8D766D /* PhoenixConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixConfig.swift; sourceTree = "<group>"; };
+		992C1C4EE13A7DD5E51D3BFE /* TransportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportTests.swift; sourceTree = "<group>"; };
+		9A0A565C0FFFC32B824F4095 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		9AEAA0578CD0F68876E109A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectionBackoffTests.swift; sourceTree = "<group>"; };
+		A3972B4817C97EF2C621D766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A8524C8D46D9C1DF9194585E /* LLMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMClient.swift; sourceTree = "<group>"; };
+		C175A544F07F390D4C2BC511 /* PhoenixRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixRenderer.swift; sourceTree = "<group>"; };
+		D12BA3A5D211C2D3182201E7 /* Phoenix.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Phoenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixProtocolTests.swift; sourceTree = "<group>"; };
+		E27CCC744FEC7C105F916FDC /* PhoenixMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixMessages.swift; sourceTree = "<group>"; };
+		EBFE1BDFAAB4934A70D3BFEF /* RendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendererTests.swift; sourceTree = "<group>"; };
+		F44A1C8CEBC7C35F81B7461F /* ReconnectionBackoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectionBackoff.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2C3327985E3138C5E1E012EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D12BA3A5D211C2D3182201E7 /* Phoenix.app */,
+				3845575D7413F12EF90B2F16 /* PhoenixTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F87A3C3C9E96C87EBCF6CDD /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				03D2022A9986805291C78003 /* FontData.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		5D1E635855F1822B0D5A98D5 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				61B53B6BBFE844805BD9AF6B /* GlassesSimulation.swift */,
+				C175A544F07F390D4C2BC511 /* PhoenixRenderer.swift */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		6071A6852F41960A1FB50F8D = {
+			isa = PBXGroup;
+			children = (
+				9548917A3E12024FB430878F /* Config */,
+				E671388163255F7A0D264C2B /* Phoenix */,
+				A3B8B7916B800BFCCF851A72 /* PhoenixTests */,
+				2C3327985E3138C5E1E012EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9548917A3E12024FB430878F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9A0A565C0FFFC32B824F4095 /* Base.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		A3B8B7916B800BFCCF851A72 /* PhoenixTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */,
+				9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */,
+				EBFE1BDFAAB4934A70D3BFEF /* RendererTests.swift */,
+				992C1C4EE13A7DD5E51D3BFE /* TransportTests.swift */,
+			);
+			path = PhoenixTests;
+			sourceTree = "<group>";
+		};
+		D3BAB67EB8431D8EDF5865BB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E27CCC744FEC7C105F916FDC /* PhoenixMessages.swift */,
+				0647BC841ED0E2FA6B92DE2F /* PhoenixProtocol.swift */,
+				504F4D3EFD256CDE6F0EC243 /* PhoenixStreamDecoder.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DA03345D16377FB43A9EFF14 /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				19BD2A90AFBC1DB7A4469DA7 /* BleTransport.swift */,
+				71685CED7151921866A7044D /* FakeTransport.swift */,
+				383D0A93D3ED14F2C55C7D28 /* PhoenixTransport.swift */,
+				F44A1C8CEBC7C35F81B7461F /* ReconnectionBackoff.swift */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
+		DD50A9D50A1A695328654056 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AEAA0578CD0F68876E109A9 /* ContentView.swift */,
+				678C15731FD267509931FDD8 /* DebugView.swift */,
+				74C6F8398DCF1035FC158FB9 /* GlassesView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E671388163255F7A0D264C2B /* Phoenix */ = {
+			isa = PBXGroup;
+			children = (
+				78CA191C2AB8114BCA7F08AA /* AppModel.swift */,
+				A3972B4817C97EF2C621D766 /* Info.plist */,
+				33663ACC8B954F2C74E20BAD /* PhoenixApp.swift */,
+				FD9DC484BA2F36D90EC25021 /* Assistant */,
+				3F87A3C3C9E96C87EBCF6CDD /* Generated */,
+				D3BAB67EB8431D8EDF5865BB /* Protocol */,
+				5D1E635855F1822B0D5A98D5 /* Rendering */,
+				DA03345D16377FB43A9EFF14 /* Transport */,
+				DD50A9D50A1A695328654056 /* Views */,
+			);
+			path = Phoenix;
+			sourceTree = "<group>";
+		};
+		FD9DC484BA2F36D90EC25021 /* Assistant */ = {
+			isa = PBXGroup;
+			children = (
+				A8524C8D46D9C1DF9194585E /* LLMClient.swift */,
+				8E28F71BC23B286ACD8D766D /* PhoenixConfig.swift */,
+				26F6F8A5CD95C97E618A83CD /* SpeechRecognizer.swift */,
+			);
+			path = Assistant;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		603B9C42903E9CB464BFD29A /* PhoenixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89C1A5285AEDCC2954EC6CE5 /* Build configuration list for PBXNativeTarget "PhoenixTests" */;
+			buildPhases = (
+				FCE1B44FDCD40D3143FC4E0B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEAD3EB7776BBAF98C12BD51 /* PBXTargetDependency */,
+			);
+			name = PhoenixTests;
+			packageProductDependencies = (
+			);
+			productName = PhoenixTests;
+			productReference = 3845575D7413F12EF90B2F16 /* PhoenixTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D3DC7D8CDDC4289B945C6D08 /* Phoenix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EC64DA80F13DBF26725BBEE /* Build configuration list for PBXNativeTarget "Phoenix" */;
+			buildPhases = (
+				667F8D15515D25C557BC4D6C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Phoenix;
+			packageProductDependencies = (
+			);
+			productName = Phoenix;
+			productReference = D12BA3A5D211C2D3182201E7 /* Phoenix.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49AA2B73F89EDFBD6A04D31B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 35BA373FDE0E20AEE6DA74FE /* Build configuration list for PBXProject "Phoenix" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 6071A6852F41960A1FB50F8D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2C3327985E3138C5E1E012EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3DC7D8CDDC4289B945C6D08 /* Phoenix */,
+				603B9C42903E9CB464BFD29A /* PhoenixTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		667F8D15515D25C557BC4D6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D07D5F3578F2A4DD90F5BC4E /* AppModel.swift in Sources */,
+				08184EFED6195459F28571D8 /* BleTransport.swift in Sources */,
+				5E40E91C73D8694A1D2F67D2 /* ContentView.swift in Sources */,
+				C111A8236F13CF65FB4A7A91 /* DebugView.swift in Sources */,
+				A62356FE9F5660348AFF174E /* FakeTransport.swift in Sources */,
+				2AB16AB132253C7F07324B6B /* FontData.swift in Sources */,
+				2BC7C1BB9E2E6C788D4C54F4 /* GlassesSimulation.swift in Sources */,
+				1B3302D35B7160693DBF112D /* GlassesView.swift in Sources */,
+				30782663AD81318FC79DF5DD /* LLMClient.swift in Sources */,
+				51D36FD7FEDCC36D12CC3954 /* PhoenixApp.swift in Sources */,
+				301B92BFAFD59ABF992D38C3 /* PhoenixConfig.swift in Sources */,
+				08D72BA1BEB04328CF564C2E /* PhoenixMessages.swift in Sources */,
+				33F221E19801595996D6C790 /* PhoenixProtocol.swift in Sources */,
+				64D4CB822251283558DEFBF1 /* PhoenixRenderer.swift in Sources */,
+				3843B3321FFAF5469041A292 /* PhoenixStreamDecoder.swift in Sources */,
+				C58A9C659A633BA9CA9ABB22 /* PhoenixTransport.swift in Sources */,
+				D46F24AC3516942C11530884 /* ReconnectionBackoff.swift in Sources */,
+				AE92D21307E96839A05C2C77 /* SpeechRecognizer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCE1B44FDCD40D3143FC4E0B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5F5315E198A3C999840CD85 /* PhoenixProtocolTests.swift in Sources */,
+				738C86E88830F21FE3B7C1FA /* ReconnectionBackoffTests.swift in Sources */,
+				D4E5B4A3F6016EB1C63F34A7 /* RendererTests.swift in Sources */,
+				69BB2A4AB30AD1C8440161A8 /* TransportTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EEAD3EB7776BBAF98C12BD51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3DC7D8CDDC4289B945C6D08 /* Phoenix */;
+			targetProxy = 53566E8A10DF14668F35D6FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2D2C39EF15F0E9CC90C81BF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoenix.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phoenix.app/Phoenix";
+			};
+			name = Release;
+		};
+		3066A694B9E54E7AA75EDF7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A0A565C0FFFC32B824F4095 /* Base.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		79D69A868133FE8ED55C6EF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Phoenix/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoenix.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E3651F711FAA0C46944827A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A0A565C0FFFC32B824F4095 /* Base.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ED84AE0DF47822AB74D93E21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Phoenix/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoenix.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F5E1B17291A731EC1418BEB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phoenix.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phoenix.app/Phoenix";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35BA373FDE0E20AEE6DA74FE /* Build configuration list for PBXProject "Phoenix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3066A694B9E54E7AA75EDF7E /* Debug */,
+				E3651F711FAA0C46944827A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		89C1A5285AEDCC2954EC6CE5 /* Build configuration list for PBXNativeTarget "PhoenixTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5E1B17291A731EC1418BEB0 /* Debug */,
+				2D2C39EF15F0E9CC90C81BF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8EC64DA80F13DBF26725BBEE /* Build configuration list for PBXNativeTarget "Phoenix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED84AE0DF47822AB74D93E21 /* Debug */,
+				79D69A868133FE8ED55C6EF0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49AA2B73F89EDFBD6A04D31B /* Project object */;
+}

@@ -1,0 +1,14 @@
+// Base configuration referenced by project.yml. It optionally includes the
+// gitignored Secrets.xcconfig; if that file is absent (fresh checkout, CI),
+// the defaults below apply and the app runs in offline echo mode.
+//
+// `#include?` is the optional include — no error when the file is missing.
+#include? "Secrets.xcconfig"
+
+// Defaults (overridden by Secrets.xcconfig when present). An empty API key
+// selects offline echo mode at runtime; nothing here is a secret.
+// URLs: `//` starts an xcconfig comment, so the empty expansion `$()` splits
+// the scheme's slashes. The value resolves to a normal https URL in Info.plist.
+PHOENIX_LLM_API_KEY =
+PHOENIX_LLM_ENDPOINT = https:/$()/api.openai.com/v1/chat/completions
+PHOENIX_LLM_MODEL = gpt-4o-mini

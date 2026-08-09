@@ -25,3 +25,4 @@ __pycache__/
 *.pyc
 .DS_Store
 *.actual.txt
+ios/Config/Secrets.xcconfig
