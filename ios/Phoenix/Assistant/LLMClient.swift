@@ -43,6 +43,12 @@ final class LLMClient: LLMClienting {
 
     var isOffline: Bool { apiKeyProvider() == nil }
 
+    /// Human-readable provider for error messages.
+    private var providerName: String {
+        guard let key = apiKeyProvider() else { return "LLM" }
+        return LLMProvider.detect(fromKey: key).displayName
+    }
+
     func stream(prompt: String, onChunk: @escaping (String) -> Void) async throws {
         let endpoint = endpointProvider()
         let model = modelProvider()
@@ -75,7 +81,7 @@ final class LLMClient: LLMClienting {
             throw LLMError.badResponse("no HTTP response")
         }
         guard (200..<300).contains(http.statusCode) else {
-            throw LLMError.badResponse("HTTP \(http.statusCode)")
+            throw LLMError.http(status: http.statusCode, provider: providerName)
         }
 
         // Server-sent events: `data: {json}` lines, terminated by `data: [DONE]`.
@@ -110,10 +116,29 @@ final class LLMClient: LLMClienting {
 
 enum LLMError: LocalizedError {
     case badResponse(String)
+    case http(status: Int, provider: String)
 
     var errorDescription: String? {
         switch self {
-        case .badResponse(let detail): return "LLM request failed: \(detail)"
+        case .badResponse(let detail):
+            return "LLM request failed: \(detail)"
+        case .http(let status, let provider):
+            // Say what to do, not just what broke. 401 in particular is
+            // almost always a rotated or revoked key rather than a bug.
+            switch status {
+            case 401, 403:
+                return "\(provider) rejected the API key (HTTP \(status)). "
+                     + "If you rotated or deleted it, paste the new key in Debug → Save."
+            case 404:
+                return "\(provider) does not recognise the model (HTTP 404). "
+                     + "It may have been retired — set PHOENIX_LLM_MODEL to a current one."
+            case 429:
+                return "\(provider) rate-limited or out of quota (HTTP 429). Try again shortly."
+            case 500...599:
+                return "\(provider) server error (HTTP \(status)). Try again shortly."
+            default:
+                return "\(provider) request failed (HTTP \(status))."
+            }
         }
     }
 }
