@@ -14,24 +14,39 @@ protocol LLMClienting {
 
 final class LLMClient: LLMClienting {
     private let session: URLSession
-    private let apiKey: String?
-    private let endpoint: URL
-    private let model: String
+    /// Resolved per request, not captured at init, so a key saved into the
+    /// Keychain while the app is running takes effect on the next question
+    /// instead of requiring a relaunch.
+    private let apiKeyProvider: () -> String?
+    private let endpointProvider: () -> URL
+    private let modelProvider: () -> String
 
     init(session: URLSession = .shared,
-         apiKey: String? = PhoenixConfig.apiKey,
-         endpoint: URL = PhoenixConfig.endpoint,
-         model: String = PhoenixConfig.model) {
+         apiKeyProvider: @escaping () -> String? = { PhoenixConfig.apiKey },
+         endpointProvider: @escaping () -> URL = { PhoenixConfig.endpoint },
+         modelProvider: @escaping () -> String = { PhoenixConfig.model }) {
         self.session = session
-        self.apiKey = apiKey
-        self.endpoint = endpoint
-        self.model = model
+        self.apiKeyProvider = apiKeyProvider
+        self.endpointProvider = endpointProvider
+        self.modelProvider = modelProvider
     }
 
-    var isOffline: Bool { apiKey == nil }
+    /// Fixed-configuration convenience (tests, previews).
+    convenience init(session: URLSession = .shared, apiKey: String?,
+                     endpoint: URL = PhoenixConfig.endpoint,
+                     model: String = PhoenixConfig.model) {
+        self.init(session: session,
+                  apiKeyProvider: { apiKey },
+                  endpointProvider: { endpoint },
+                  modelProvider: { model })
+    }
+
+    var isOffline: Bool { apiKeyProvider() == nil }
 
     func stream(prompt: String, onChunk: @escaping (String) -> Void) async throws {
-        guard let apiKey else {
+        let endpoint = endpointProvider()
+        let model = modelProvider()
+        guard let apiKey = apiKeyProvider() else {
             await echo(prompt: prompt, onChunk: onChunk)
             return
         }

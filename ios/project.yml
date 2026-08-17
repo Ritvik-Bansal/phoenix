@@ -48,6 +48,13 @@ targets:
           Phoenix uses the microphone to capture your voice for the assistant.
         NSSpeechRecognitionUsageDescription: >-
           Phoenix transcribes your speech to answer questions on the glasses.
+        # Bridges the build settings from Config/Base.xcconfig (and the
+        # gitignored Secrets.xcconfig it optionally includes) into the bundle,
+        # where PhoenixConfig reads them. Without these three entries the
+        # xcconfig route is inert.
+        PHOENIX_LLM_API_KEY: "$(PHOENIX_LLM_API_KEY)"
+        PHOENIX_LLM_ENDPOINT: "$(PHOENIX_LLM_ENDPOINT)"
+        PHOENIX_LLM_MODEL: "$(PHOENIX_LLM_MODEL)"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.phoenix.app

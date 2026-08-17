@@ -26,6 +26,12 @@
 	<string>Phoenix uses the microphone to capture your voice for the assistant.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Phoenix transcribes your speech to answer questions on the glasses.</string>
+	<key>PHOENIX_LLM_API_KEY</key>
+	<string>$(PHOENIX_LLM_API_KEY)</string>
+	<key>PHOENIX_LLM_ENDPOINT</key>
+	<string>$(PHOENIX_LLM_ENDPOINT)</string>
+	<key>PHOENIX_LLM_MODEL</key>
+	<string>$(PHOENIX_LLM_MODEL)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

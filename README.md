@@ -133,10 +133,33 @@ like the firmware does. The Simulator uses the fake automatically, so the whole
 app — push-to-talk, streaming reply, virtual glasses, protocol console — works
 end to end with nothing connected.
 
-To use a real LLM, copy `ios/Config/Secrets.example.xcconfig` to
-`ios/Config/Secrets.xcconfig` and add your key (that path is gitignored; the
-app also reads a Keychain entry in preference to it). With no key configured
-the assistant degrades to an offline echo mode rather than failing.
+### Where the LLM API key goes
+
+Two options; the Keychain wins if both are set. With neither, the assistant
+degrades to offline echo mode rather than failing.
+
+**1. Build-time (survives reinstalls, needs a rebuild).** Create
+`ios/Config/Secrets.xcconfig` — gitignored, and the only file you should ever
+put a key in:
+
+```
+PHOENIX_LLM_API_KEY = sk-your-real-key
+PHOENIX_LLM_ENDPOINT = https:/$()/api.openai.com/v1/chat/completions
+PHOENIX_LLM_MODEL = gpt-4o-mini
+```
+
+`ios/Config/Secrets.example.xcconfig` is a copyable template. The `$()` is an
+empty expansion that keeps `//` from starting an xcconfig comment — keep it.
+`Config/Base.xcconfig` includes this file *after* its defaults, so your values
+override them; the settings are bridged into `Info.plist` by `project.yml` and
+read by `PhoenixConfig`. Rebuild after editing.
+
+**2. Runtime (no rebuild).** Launch the app, open the **Debug** tab, and paste
+the key under *LLM API key* → **Save to Keychain**. It takes effect on the next
+question, and **Clear** removes it. Nothing touches the repo.
+
+Any endpoint speaking the OpenAI streaming chat-completions format works —
+point `PHOENIX_LLM_ENDPOINT` at it.
 
 ## Known limitations
 

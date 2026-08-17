@@ -3,6 +3,8 @@ import SwiftUI
 /// Raw protocol console: every frame both directions, hex plus decoded.
 struct DebugView: View {
     @EnvironmentObject private var model: AppModel
+    @State private var keyEntry = ""
+    @State private var keyStatus: String?
 
     var body: some View {
         NavigationStack {
@@ -16,6 +18,41 @@ struct DebugView: View {
                     LabeledContent("Service", value: String(PhoenixProto.serviceUUID.prefix(8)) + "…")
                 } header: {
                     Text("Link")
+                }
+
+                Section {
+                    // Runtime alternative to Config/Secrets.xcconfig: the key
+                    // goes to the Keychain, takes precedence over the build
+                    // setting, and never touches the repo.
+                    SecureField("sk-…", text: $keyEntry)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                    HStack {
+                        Button("Save to Keychain") {
+                            let trimmed = keyEntry.trimmingCharacters(in: .whitespacesAndNewlines)
+                            guard !trimmed.isEmpty else { return }
+                            PhoenixConfig.storeAPIKey(trimmed)
+                            keyEntry = ""
+                            keyStatus = "Saved. New questions use the live LLM."
+                            model.refreshLLMStatus()
+                        }
+                        .disabled(keyEntry.trimmingCharacters(in: .whitespaces).isEmpty)
+                        Spacer()
+                        Button("Clear", role: .destructive) {
+                            PhoenixConfig.clearAPIKey()
+                            keyEntry = ""
+                            keyStatus = "Cleared. Back to offline echo."
+                            model.refreshLLMStatus()
+                        }
+                    }
+                    .font(.callout)
+                    if let keyStatus {
+                        Text(keyStatus).font(.caption).foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("LLM API key")
+                } footer: {
+                    Text("Stored in the Keychain, not in the project. The other option is ios/Config/Secrets.xcconfig, which is gitignored.")
                 }
 
                 Section {

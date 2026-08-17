@@ -1,14 +1,18 @@
-// Base configuration referenced by project.yml. It optionally includes the
-// gitignored Secrets.xcconfig; if that file is absent (fresh checkout, CI),
-// the defaults below apply and the app runs in offline echo mode.
+// Base configuration referenced by project.yml. project.yml bridges these
+// three settings into Info.plist, where PhoenixConfig.swift reads them.
 //
-// `#include?` is the optional include — no error when the file is missing.
-#include? "Secrets.xcconfig"
-
-// Defaults (overridden by Secrets.xcconfig when present). An empty API key
-// selects offline echo mode at runtime; nothing here is a secret.
+// Defaults first: an empty API key selects offline echo mode at runtime.
+// Nothing here is a secret.
+//
 // URLs: `//` starts an xcconfig comment, so the empty expansion `$()` splits
-// the scheme's slashes. The value resolves to a normal https URL in Info.plist.
+// the scheme's slashes. The value resolves to a normal https URL.
 PHOENIX_LLM_API_KEY =
 PHOENIX_LLM_ENDPOINT = https:/$()/api.openai.com/v1/chat/completions
 PHOENIX_LLM_MODEL = gpt-4o-mini
+
+// Then the optional, gitignored secrets file. `#include?` does not error when
+// the file is missing (fresh checkout, CI). It comes LAST on purpose:
+// xcconfig assignments are last-wins, so anything defined there overrides the
+// defaults above. Putting the include first would let the defaults silently
+// clobber a real key.
+#include? "Secrets.xcconfig"

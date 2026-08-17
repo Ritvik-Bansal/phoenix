@@ -29,7 +29,12 @@ final class AppModel: ObservableObject {
     let glasses: GlassesSimulation
     private var mirrorTimer: Timer?
 
-    var isOfflineLLM: Bool { llm.isOffline }
+    /// Mirrors llm.isOffline; republished so the UI updates when a key is
+    /// saved or cleared at runtime.
+    @Published private(set) var isOfflineLLM: Bool = true
+
+    /// Call after changing the stored key so the status label re-reads it.
+    func refreshLLMStatus() { isOfflineLLM = llm.isOffline }
 
     init(transport: PhoenixTransport? = nil, llm: LLMClienting = LLMClient()) {
         // CoreBluetooth cannot work in the Simulator; default to the fake
@@ -44,6 +49,7 @@ final class AppModel: ObservableObject {
         self.usingFakeTransport = chosen is FakeTransport
         self.llm = llm
         self.glasses = (chosen as? FakeTransport)?.glasses ?? GlassesSimulation()
+        self.isOfflineLLM = llm.isOffline
 
         chosen.statePublisher
             .receive(on: DispatchQueue.main)
