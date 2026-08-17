@@ -135,31 +135,40 @@ end to end with nothing connected.
 
 ### Where the LLM API key goes
 
-Two options; the Keychain wins if both are set. With neither, the assistant
-degrades to offline echo mode rather than failing.
+The app works with **OpenAI or Google Gemini keys** — the provider is detected
+from the key itself, so pasting one is all you do. With no key it degrades to
+offline echo mode rather than failing.
 
-**1. Build-time (survives reinstalls, needs a rebuild).** Create
-`ios/Config/Secrets.xcconfig` — gitignored, and the only file you should ever
-put a key in:
+| Key looks like | Provider | Default model |
+|---|---|---|
+| `sk-…` | OpenAI | `gpt-4o-mini` |
+| `AIza…`, `AQ.…`, anything else | Gemini | `gemini-flash-latest` |
+
+Both are called through the same OpenAI-format streaming endpoint (Gemini
+exposes an OpenAI-compatibility URL), so there is one client and one SSE
+parser for both.
+
+**1. Runtime, no rebuild.** Launch the app → **Debug** tab → *LLM API key* →
+paste (there's a clipboard button, since pasting into a secure field on the
+Simulator is otherwise fiddly) → **Save to Keychain**. iOS will ask once for
+permission to read the clipboard. The row above updates to e.g.
+`Gemini · gemini-flash-latest`, and the next question hits the live model.
+**Clear** removes it.
+
+**2. Build-time.** Create `ios/Config/Secrets.xcconfig` — gitignored, and the
+only file a key should ever go in:
 
 ```
-PHOENIX_LLM_API_KEY = sk-your-real-key
-PHOENIX_LLM_ENDPOINT = https:/$()/api.openai.com/v1/chat/completions
-PHOENIX_LLM_MODEL = gpt-4o-mini
+PHOENIX_LLM_API_KEY = your-key-here
 ```
 
-`ios/Config/Secrets.example.xcconfig` is a copyable template. The `$()` is an
-empty expansion that keeps `//` from starting an xcconfig comment — keep it.
-`Config/Base.xcconfig` includes this file *after* its defaults, so your values
-override them; the settings are bridged into `Info.plist` by `project.yml` and
-read by `PhoenixConfig`. Rebuild after editing.
+`ios/Config/Secrets.example.xcconfig` is a copyable template. Endpoint and
+model are optional overrides; leave them unset and they follow the detected
+provider. To point at a proxy, Azure, or a self-hosted OpenAI-compatible
+server, set them explicitly (the `$()` in the template is an empty expansion
+that stops `//` starting an xcconfig comment). Rebuild after editing.
 
-**2. Runtime (no rebuild).** Launch the app, open the **Debug** tab, and paste
-the key under *LLM API key* → **Save to Keychain**. It takes effect on the next
-question, and **Clear** removes it. Nothing touches the repo.
-
-Any endpoint speaking the OpenAI streaming chat-completions format works —
-point `PHOENIX_LLM_ENDPOINT` at it.
+The Keychain wins if both are configured.
 
 ## Known limitations
 
@@ -175,6 +184,9 @@ point `PHOENIX_LLM_ENDPOINT` at it.
 - **The firmware is verified by compilation only.** No hardware was available,
   so `./firmware/build.sh` producing a clean build is the extent of the check —
   it has never been flashed or run on a panel.
+- **Model ids drift.** Google retires dated ids (a pinned `gemini-2.5-flash`
+  already 404s for new keys), which is why the defaults are moving aliases.
+  If a call fails with a 404 naming a replacement, set `PHOENIX_LLM_MODEL`.
 - **The renderer's glyph set is printable ASCII** plus a fallback box. Emoji and
   non-Latin text sanitize to that box (documented in PROTOCOL.md §6); they
   render harmlessly rather than crashing, but they do not display.

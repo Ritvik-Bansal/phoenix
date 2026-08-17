@@ -1,14 +1,18 @@
 // Base configuration referenced by project.yml. project.yml bridges these
 // three settings into Info.plist, where PhoenixConfig.swift reads them.
 //
-// Defaults first: an empty API key selects offline echo mode at runtime.
-// Nothing here is a secret.
+// All three default to empty, which means:
+//   API_KEY empty    -> offline echo mode (no network, no key needed)
+//   ENDPOINT empty   -> chosen automatically from the key's provider
+//                       (sk-... => OpenAI, otherwise => Gemini)
+//   MODEL empty      -> that provider's default model
+// Set ENDPOINT/MODEL only to override the automatic choice (proxy, Azure,
+// a self-hosted OpenAI-compatible server, a specific model, ...).
 //
-// URLs: `//` starts an xcconfig comment, so the empty expansion `$()` splits
-// the scheme's slashes. The value resolves to a normal https URL.
+// Nothing here is a secret.
 PHOENIX_LLM_API_KEY =
-PHOENIX_LLM_ENDPOINT = https:/$()/api.openai.com/v1/chat/completions
-PHOENIX_LLM_MODEL = gpt-4o-mini
+PHOENIX_LLM_ENDPOINT =
+PHOENIX_LLM_MODEL =
 
 // Then the optional, gitignored secrets file. `#include?` does not error when
 // the file is missing (fresh checkout, CI). It comes LAST on purpose:

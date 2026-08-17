@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// Raw protocol console: every frame both directions, hex plus decoded.
 struct DebugView: View {
@@ -14,7 +15,8 @@ struct DebugView: View {
                                    ? "FakeTransport (virtual)" : "BleTransport")
                     LabeledContent("State", value: model.transportState.label)
                     LabeledContent("LLM", value: model.isOfflineLLM
-                                   ? "offline echo (no key)" : PhoenixConfig.model)
+                                   ? "offline echo (no key)"
+                                   : "\(PhoenixConfig.provider.displayName) · \(PhoenixConfig.model)")
                     LabeledContent("Service", value: String(PhoenixProto.serviceUUID.prefix(8)) + "…")
                 } header: {
                     Text("Link")
@@ -24,18 +26,45 @@ struct DebugView: View {
                     // Runtime alternative to Config/Secrets.xcconfig: the key
                     // goes to the Keychain, takes precedence over the build
                     // setting, and never touches the repo.
-                    SecureField("sk-…", text: $keyEntry)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
+                    HStack {
+                        SecureField("sk-… or AIza…", text: $keyEntry)
+                            .textInputAutocapitalization(.never)
+                            .autocorrectionDisabled()
+                            .textContentType(.password)
+                        // Pasting into a SecureField on the Simulator is
+                        // fiddly (no long-press menu without a hardware
+                        // keyboard), so offer an explicit pasteboard read.
+                        Button {
+                            if let s = UIPasteboard.general.string {
+                                keyEntry = s.trimmingCharacters(in: .whitespacesAndNewlines)
+                                keyStatus = "Pasted \(keyEntry.count) characters. Now tap Save."
+                            } else {
+                                keyStatus = "Clipboard is empty."
+                            }
+                        } label: {
+                            Label("Paste", systemImage: "doc.on.clipboard")
+                                .labelStyle(.iconOnly)
+                        }
+                        .buttonStyle(.borderless)
+                    }
+                    if !keyEntry.isEmpty {
+                        Text("\(LLMProvider.detect(fromKey: keyEntry).displayName) key · \(keyEntry.count) chars")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
                     HStack {
                         Button("Save to Keychain") {
                             let trimmed = keyEntry.trimmingCharacters(in: .whitespacesAndNewlines)
                             guard !trimmed.isEmpty else { return }
                             PhoenixConfig.storeAPIKey(trimmed)
                             keyEntry = ""
-                            keyStatus = "Saved. New questions use the live LLM."
+                            keyStatus = "Saved — \(LLMProvider.detect(fromKey: trimmed).displayName). New questions use the live model."
                             model.refreshLLMStatus()
                         }
+                        // .borderless is required: two Buttons in one List
+                        // row otherwise share a single tap target and the
+                        // wrong one fires.
+                        .buttonStyle(.borderless)
                         .disabled(keyEntry.trimmingCharacters(in: .whitespaces).isEmpty)
                         Spacer()
                         Button("Clear", role: .destructive) {
@@ -44,6 +73,7 @@ struct DebugView: View {
                             keyStatus = "Cleared. Back to offline echo."
                             model.refreshLLMStatus()
                         }
+                        .buttonStyle(.borderless)
                     }
                     .font(.callout)
                     if let keyStatus {
@@ -52,7 +82,7 @@ struct DebugView: View {
                 } header: {
                     Text("LLM API key")
                 } footer: {
-                    Text("Stored in the Keychain, not in the project. The other option is ios/Config/Secrets.xcconfig, which is gitignored.")
+                    Text("Provider is detected from the key: sk-… uses OpenAI, anything else (AIza…, AQ.…) uses Gemini. Stored in the Keychain, not in the project.")
                 }
 
                 Section {

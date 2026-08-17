@@ -21,6 +21,7 @@
 		64D4CB822251283558DEFBF1 /* PhoenixRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175A544F07F390D4C2BC511 /* PhoenixRenderer.swift */; };
 		69BB2A4AB30AD1C8440161A8 /* TransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992C1C4EE13A7DD5E51D3BFE /* TransportTests.swift */; };
 		738C86E88830F21FE3B7C1FA /* ReconnectionBackoffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */; };
+		904F67D657DB2DF20CFC00C7 /* LLMProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1725B509F62691582A89A /* LLMProviderTests.swift */; };
 		A5F5315E198A3C999840CD85 /* PhoenixProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */; };
 		A62356FE9F5660348AFF174E /* FakeTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71685CED7151921866A7044D /* FakeTransport.swift */; };
 		AE92D21307E96839A05C2C77 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6F8A5CD95C97E618A83CD /* SpeechRecognizer.swift */; };
@@ -62,6 +63,7 @@
 		9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectionBackoffTests.swift; sourceTree = "<group>"; };
 		A3972B4817C97EF2C621D766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A8524C8D46D9C1DF9194585E /* LLMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMClient.swift; sourceTree = "<group>"; };
+		BFA1725B509F62691582A89A /* LLMProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMProviderTests.swift; sourceTree = "<group>"; };
 		C175A544F07F390D4C2BC511 /* PhoenixRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixRenderer.swift; sourceTree = "<group>"; };
 		D12BA3A5D211C2D3182201E7 /* Phoenix.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Phoenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoenixProtocolTests.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		A3B8B7916B800BFCCF851A72 /* PhoenixTests */ = {
 			isa = PBXGroup;
 			children = (
+				BFA1725B509F62691582A89A /* LLMProviderTests.swift */,
 				DD10D981ECEC456EC36C773F /* PhoenixProtocolTests.swift */,
 				9E0D559AE93F98ABE3B1D563 /* ReconnectionBackoffTests.swift */,
 				EBFE1BDFAAB4934A70D3BFEF /* RendererTests.swift */,
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				904F67D657DB2DF20CFC00C7 /* LLMProviderTests.swift in Sources */,
 				A5F5315E198A3C999840CD85 /* PhoenixProtocolTests.swift in Sources */,
 				738C86E88830F21FE3B7C1FA /* ReconnectionBackoffTests.swift in Sources */,
 				D4E5B4A3F6016EB1C63F34A7 /* RendererTests.swift in Sources */,
